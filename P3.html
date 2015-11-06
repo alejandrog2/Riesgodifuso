@@ -1,37 +1,60 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Página 3</title>
+  <meta charset="utf-8">
+  <title>Página 3</title>
 </head>
+<script type="text/javascript">
+var niveleducativodelacutiente = 0;
+function validarNivelE() {
+  if (document.getElementById('Niveleducativodelacutiente_0').checked) {
+    niveleducativodelacutiente +=25;
+    alert("El primer valor está seleccionado"); 
+       }
+  if (document.getElementById('Niveleducativodelacutiente_1').checked) {
+    niveleducativodelacutiente +=50;
+    alert("El 2 valor está seleccionado"); 
+      }
+   if ((document.getElementById('Niveleducativodelacutiente_2').checked) {
+    niveleducativodelacutiente +=75;
+    alert("El 3 valor está seleccionado"); 
+      }
+   if (document.getElementById('Niveleducativodelacutiente_3').checked) {
+    niveleducativodelacutiente +=100;
+    alert("El 4 valor está seleccionado"); 
+      }
+}
+
+</script>
 
 <body>
 	<!--Contenedor principal-->
-<div>
-    	<!--Contenido-->
-  <article>
-        	<p>
-            	Nivel educativo del actudiente
-            </p>
-    </article>
-  <p>
-          <label>
-            <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_0">
-            Básica Primaria</label>
-          <br>
-          <label>
-            <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_1">
-            Básica secundaria</label>
-          <br>
-          <label>
-            <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_2">
-            Media</label>
+  <div>
+   <!--Contenido-->
+   <article>
+     <p>
+       Seleccione el nivel educativo del acudiente
+     </p>
+   </article>
+   <p>
+    <label>
+      <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_0">
+      Básica primaria o inferiores  </label>
+      <br>
+      <label>
+        <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_1">
+        Básica secundaria</label>
+        <br>
+        <label>
+          <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_2">
+          Media vocacional, técnica o tecnológica </label>
           <br>
           <label>
             <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_3">
             Universitaria o superior</label>
-          <br>
-  </p>
-  </div>
-</body>
-</html>
+            <br>
+          </p>
+          <input type="button" value="siguiente" name="siguiente" onclick="validarNivelE()"/>
+        </div>
+      </body>
+      </html>
