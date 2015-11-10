@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Riesgo Academico</title>
+  <script  type="text/javascript" >
+
+var icfes;
+var apoyoE =0;
+var nivelE = 0;
+var ingresosF=0;
+
+function validarIcfes(){
+icfes = document.getElementById("icfes").value;  
+if (icfes==""){alert("Debe llenar todos los campos");};
+
+if(isNaN(icfes)){alert("El resultado debe ser una cantidad en números");
+    document.getElementById("cont1").style.display = 'block';
+            document.getElementById("cont2").style.display = 'none';
+};
+if(!(icfes=="")){
+    document.getElementById("cont1").style.display = 'none';
+    document.getElementById("cont2").style.display = 'block';
+}
+console.log(icfes);
+}
+
+function validarApoyoE () {
+if (document.getElementById('Seleccionesunivel_0').checked) {apoyoE +=1;};
+if (document.getElementById('Seleccionesunivel_1').checked) {apoyoE +=2;};
+if (document.getElementById('Seleccionesunivel_2').checked) {apoyoE +=3;};
+if (document.getElementById('Seleccionesunivel_3').checked) {apoyoE +=5;};
+        document.getElementById("cont2").style.display = 'none';
+        document.getElementById("cont3").style.display = 'block';
+console.log(apoyoE);
+}
+function validarNivelE() {
+if (document.getElementById('Niveleducativodelacutiente_0').checked) {nivelE +=25;};
+if (document.getElementById('Niveleducativodelacutiente_1').checked) {nivelE +=50;};
+if (document.getElementById('Niveleducativodelacutiente_2').checked) {nivelE +=75;};
+if (document.getElementById('Niveleducativodelacutiente_3').checked) {nivelE +=100;};
+      document.getElementById("cont3").style.display = 'none';
+        document.getElementById("cont4").style.display = 'block';
+console.log(nivelE);
+}
+
+function validarIngresosF() {
+if (document.getElementById('Cuantossalariosminimosganaalmes_0').checked) {ingresosF +=1;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_1').checked) {ingresosF +=2;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_2').checked) {ingresosF +=3;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_3').checked) {ingresosF +=4;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_4').checked) {ingresosF +=5;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_5').checked) {ingresosF +=6;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_6').checked) {ingresosF +=7;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_7').checked) {ingresosF +=8;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_8').checked) {ingresosF +=9;};
+if (document.getElementById('Cuantossalariosminimosganaalmes_9').checked) {ingresosF +=10;};
+console.log(ingresosF);
+}
+
+function riesgo () {
+
+var nivelEdif;
+var ingresosFdif;
+var icfesdif;
+var apoyoEdif;
+
+var etiqueta;
+var rango=0;
+
+
+if (nivelE>=10 && nivelE<34) {nivelEdif="bajo"; };
+if (nivelE>=30 && nivelE<70) {nivelEdif="medio";};
+if (nivelE>=67 && nivelE<90) {nivelEdif="alto"; };
+console.log(nivelEdif);
+
+if (ingresosF>=2 && ingresosF<4) {ingresosFdif="bajo";};
+if (ingresosF>=3 && ingresosF<5) {ingresosFdif="medio";};
+if (ingresosF>=4 && ingresosF<12) {ingresosFdif="alto";};
+console.log(ingresosFdif);
+
+if (icfes>=10 && icfes<200)  {icfesdif="bajo"; };
+if (icfes>=150 && icfes<350) {icfesdif="medio";};
+if (icfes>=300 && icfes<500) {icfesdif="alto"; };
+
+if (apoyoE>=0 && apoyoE<2)   {apoyoEdif="bajo"; };
+if (apoyoE>=1 && apoyoE<8)   {apoyoEdif="medio";};
+if (apoyoE>=6 && apoyoE<=10) {apoyoEdif="alto"; };
+
+
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="MUY ALTO" , rango=68.6};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="MUY ALTO" , rango=67.7};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=44.8};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="MUY ALTO" , rango=83.7};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=60.6};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=48.9};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=32.7};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=32.2};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=37.8};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="bajo"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.2};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="MUY ALTO" , rango=84.9};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=57.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=36.8};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=38.6};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="medio" || apoyoEdif=="alto") {etiqueta="BAJO"     , rango=23.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MUY ALTO" , rango=84.7};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=51.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="bajo"  || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="BAJO"     , rango=23.3};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="ALTO"     , rango=50};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=37.7};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="BAJO"     , rango=23.3};
+if(nivelEdif=="medio" || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="medio" || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="BAJO"     , rango=23.3};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="bajo") {etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="MEDIO"    , rango=33.3};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="medio"){etiqueta="BAJO"     , rango=23.3};
+if(nivelEdif=="alto"  || ingresosFdif=="bajo"  || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="BAJO"     , rango=23.3};
+if(nivelEdif=="alto"  || ingresosFdif=="medio" || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="MUY BAJO" , rango=8.61};
+if(nivelEdif=="alto"  || ingresosFdif=="alto"  || icfesdif=="alto"  || apoyoEdif=="alto") {etiqueta="MUY BAJO" , rango=7.54};
+
+
+//document.getElementById("donde quiera que salga").innerHTML =" El riesgo de desercion es " etiqueta + " con un rango de "+ rango + " %";
+}
+</script>
+</head>
+<body>
+<!--Contenedor principal-->
+<div class = "cont" id="cont1">
+	  <p>Ingrese su puntaje en el examen de estado ICFES   </p>
+  <input type="text" id="icfes" >
+<br />
+<div class="reng"><input type="button" value="Siguiente" name="Siguiente" onclick="validarIcfes()" /></div>
+</div>
+
+<div  class = "cont" id="cont2" style="display:none;">
+  <p>
+          <label>
+            <input type="checkbox" name="Seleccione su nivel" value="casilla de verificación " id="Seleccionesunivel_0">
+            No tiene ningún apoyo  </label>
+          <br>
+          <label>
+            <input type="checkbox" name="Seleccionesunivel_" value="casilla de verificación " id="Seleccionesunivel_1">
+            Recibe algún subsidio o descuento     </label>
+          <br>
+          <label>
+            <input type="checkbox" name="Seleccionesunivel_" value="casilla de verificación " id="Seleccionesunivel_2">
+            Capital propio</label>
+          <br>
+          <label>
+            <input type="checkbox" name="Seleccionesunivel_" value="casilla de verificación " id="Seleccionesunivel_3">
+            Tiene beca(s)</label>
+          <br>
+        <div class="reng"><input type="button" value="Siguiente" name="Siguiente" onclick="validarApoyoE()"/></div>
+  </p>
+</div> 
+
+<div class = "cont" id="cont3" style="display:none;">
+  <p>
+    <label>
+      <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_0">
+      Básica primaria o inferiores  </label>
+      <br>
+      <label>
+        <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_1">
+        Básica secundaria</label>
+        <br>
+        <label>
+          <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_2">
+          Media vocacional, técnica o tecnológica </label>
+          <br>
+          <label>
+            <input type="radio" name="Nivel educativo del acutiente" value="opción" id="Niveleducativodelacutiente_3">
+            Universitaria o superior</label>
+            <br>
+          </p>
+         <div class="reng"><input type="button" value="Siguiente" name="Siguiente" onclick="validarNivelE()"/></div>
+    
+</div>
+
+<div class = "cont" id="cont4" style="display:none;">
+    
+    <p>
+              Seleccione el rango de ingresos familiares
+            </p>
+            <p>(SMMLV)</p>
+      </article>
+      <p>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_0">
+            0 a 1</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_1">
+            1 a 2</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_2">
+            2 a 3</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_3">
+            3 a 5</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_4">
+            5 a 7</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_5">
+            7 a 9</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_6">
+            9 a 11</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_7">
+            11 a 13</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_8">
+            13 a 15</label>
+          <br>
+          <label>
+            <input type="radio" name="Cuantos salarios minimos gana al mes" value="opción" id="Cuantossalariosminimosganaalmes_9">
+            15 o más</label>
+          <br>
+           <div class="reng"><input type="button" value="Siguiente" name="Siguiente" onclick="validarIngresosF()"/></div>
+  </p>
+<br />
+
+</body>
+</html>
